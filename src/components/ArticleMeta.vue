@@ -12,7 +12,7 @@
       >
         {{ article.author.username }}
       </router-link>
-      <span class="date">{{ article.createdAt | date }}</span>
+      <span class="date">{{ $filters.date(article.createdAt) }}</span>
     </div>
     <rwv-article-actions
       v-if="actions"

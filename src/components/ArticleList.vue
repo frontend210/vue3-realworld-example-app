@@ -10,7 +10,7 @@
         :article="article"
         :key="article.title + index"
       />
-      <VPagination :pages="pages" :currentPage.sync="currentPage" />
+      <VPagination :pages="pages" v-model:currentPage="currentPage" />
     </div>
   </div>
 </template>

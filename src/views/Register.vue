@@ -10,7 +10,9 @@
             </router-link>
           </p>
           <ul v-if="errors" class="error-messages">
-            <li v-for="(v, k) in errors" :key="k">{{ k }} {{ v | error }}</li>
+            <li v-for="(v, k) in errors" :key="k">
+              {{ k }} {{ $filters.error(v) }}
+            </li>
           </ul>
           <form @submit.prevent="onSubmit">
             <fieldset class="form-group">

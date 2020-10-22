@@ -1,4 +1,4 @@
-import Vue, { createApp } from "vue";
+import { createApp } from "vue";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
@@ -8,9 +8,6 @@ import { CHECK_AUTH } from "./store/actions.type";
 import ApiService from "./common/api.service";
 import DateFilter from "./common/date.filter";
 import ErrorFilter from "./common/error.filter";
-
-Vue.filter("date", DateFilter);
-Vue.filter("error", ErrorFilter);
 
 ApiService.init();
 
@@ -25,7 +22,16 @@ router.beforeEach((to, from, next) =>
 //   store,
 //   render: h => h(App)
 // }).$mount("#app");
-createApp(App)
+const app = createApp(App)
   .use(router)
   .use(store)
   .mount("#app");
+
+// v2 syntax
+// Vue.filter("date", DateFilter);
+// Vue.filter("error", ErrorFilter);
+
+app.config.globalProperties.$filters = {
+  date: DateFilter,
+  error: ErrorFilter
+};
